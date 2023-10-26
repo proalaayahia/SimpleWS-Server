@@ -10,34 +10,34 @@ builder.WebHost.UseUrls("http://localhost:6969");
 var app = builder.Build();
 app.UseWebSockets();
 
-List<Notificaitons> datas = new List<Notificaitons>();
+List<Notifications> datas = new List<Notifications>();
 
-datas.Add(new Notificaitons
-                {
-                    Id = "468d9d99-b195-4b6a-944e-a0b468747c91",
-                    Status = 0,
-                    Type = "excelimportcomplete",
-                    WebUrl = "updatedata/ST/",
-                    TargetEntityId = "",
-                    Description = "•Poyraz RES santraline ait veri -> EAK (MW) - 2023090703 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090702 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090701 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090700 /  Güncel Veri : 25.0\n"
-                });
-datas.Add(new Notificaitons
-            {
-                Id = "468d9d99-b195-4b6a-944e-a0b468747c91",
-                Status = 0,
-                Type = "excelimportcomplete",
-                WebUrl = "updatedata/ST/",
-                TargetEntityId = "",
-                Description = "•Poyraz RES santraline ait veri -> EAK (MW) - 2023090703 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090702 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090701 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090700 /  Güncel Veri : 25.0\n"
-            });
+datas.Add(new Notifications
+{
+    Id = "468d9d99-b195-4b6a-944e-a0b468747c91",
+    Status = 0,
+    Type = "excelimportcomplete",
+    WebUrl = "updatedata/ST/",
+    TargetEntityId = "",
+    Description = "•Poyraz RES santraline ait veri -> EAK (MW) - 2023090703 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090702 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090701 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090700 /  Güncel Veri : 25.0\n"
+});
+datas.Add(new Notifications
+{
+    Id = "468d9d99-b195-4b6a-944e-a0b468747c91",
+    Status = 0,
+    Type = "excelimportcomplete",
+    WebUrl = "updatedata/ST/",
+    TargetEntityId = "",
+    Description = "•Poyraz RES santraline ait veri -> EAK (MW) - 2023090703 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090702 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090701 /  Güncel Veri : 25.0\n•Poyraz RES santraline ait veri -> EAK (MW) - 2023090700 /  Güncel Veri : 25.0\n"
+});
 
-var responseNotification = new NotificaitonList
-                           {
-                               ErrorCode = 0,
-                               ResultMessage = "",
-                               Success = false,
-                               Data = datas
-                            };
+var responseNotification = new NotificationList
+{
+    ErrorCode = 0,
+    ResultMessage = "",
+    Success = false,
+    Data = datas
+};
 
 
 app.Map("/ws", async context =>
@@ -76,7 +76,7 @@ app.Map("/ws", async context =>
 
 
 
-// ÇOKLU WEBSOCKET SERVER
+// MULTIPLE WEBSOCKET SERVER
 
 /*
 var connections = new List<WebSocket>();
@@ -140,23 +140,23 @@ async Task Broadcast(string message)
 */
 await app.RunAsync();
 
-public class NotificaitonList
+public class NotificationList
 {
     public int ErrorCode { get; set; }
     public bool Success { get; set; }
     public string ResultMessage { get; set; } = "";
-    public List<Notificaitons> Data { get; set; }
+    public List<Notifications> Data { get; set; } = new();
 
 
 }
-public class Notificaitons
+public class Notifications
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
     public int Status { get; set; }
-    public string Type { get; set; }
-    public string WebUrl { get; set; }
-    public string TargetEntityId { get; set; }
-    public string Description { get; set; }
+    public string Type { get; set; } = null!;
+    public string WebUrl { get; set; } = null!;
+    public string TargetEntityId { get; set; } = null!;
+    public string Description { get; set; } = string.Empty;
     public DateTime CreateDate { get; set; } = DateTime.Now;
 }
 
